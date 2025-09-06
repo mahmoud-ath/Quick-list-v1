@@ -4,8 +4,6 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 import AddVideoModal from './components/AddVideoModal';
-import PlaylistGrid from './components/PlaylistGrid';
-import PlaylistView from './components/PlaylistView';
 import { Playlist, VideoItem } from './types';
 
 function App() {
@@ -15,6 +13,7 @@ function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isPlayerMode, setIsPlayerMode] = useState(false);
 
   // Load playlists from localStorage on mount
   useEffect(() => {
@@ -84,11 +83,13 @@ function App() {
   const openPlaylist = (id: string) => {
     setSelectedPlaylistId(id);
     setCurrentView('playlist');
+    setIsPlayerMode(false);
   };
 
   const goHome = () => {
     setCurrentView('dashboard');
     setSelectedPlaylistId(null);
+    setIsPlayerMode(false);
   };
 
   const filteredPlaylists = playlists.filter(playlist =>
@@ -103,7 +104,7 @@ function App() {
       <Sidebar
         playlists={playlists}
         selectedPlaylistId={selectedPlaylistId}
-        collapsed={sidebarCollapsed}
+        collapsed={sidebarCollapsed || isPlayerMode}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
         onSelectPlaylist={openPlaylist}
         onCreatePlaylist={() => setShowAddModal(true)}
