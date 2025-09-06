@@ -53,14 +53,6 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
   if (playlist.videos.length === 0) {
     return (
       <div className="text-center py-12">
-        <button
-          onClick={onGoBack}
-          className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 mb-6"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Playlists
-        </button>
-        
         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <Play className="w-8 h-8 text-gray-400" />
         </div>
@@ -72,16 +64,8 @@ const PlaylistView: React.FC<PlaylistViewProps> = ({
 
   return (
     <div className="space-y-6">
-      {/* Back Button & Playlist Header */}
-      <div className="flex items-center justify-between">
-        <button
-          onClick={onGoBack}
-          className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Playlists
-        </button>
-
+      {/* Playlist Header */}
+      <div className="flex items-center justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={shufflePlaylist}
