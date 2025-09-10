@@ -7,19 +7,14 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'email', 'username', 'avatar', 'bio')
         read_only_fields = ('id',)
 
+class PlaylistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Playlist
+        fields = ['id', 'name', 'videos'] # Make sure 'id' is here
+        read_only_fields = ['id'] # It should be read-only
+
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
-        fields = ('id', 'youtube_id', 'title', 'description', 'thumbnail_url', 
-                 'position', 'duration', 'added_at')
-        read_only_fields = ('id', 'added_at')
-
-class PlaylistSerializer(serializers.ModelSerializer):
-    videos = VideoSerializer(many=True, read_only=True)
-    owner = UserSerializer(read_only=True)
-    
-    class Meta:
-        model = Playlist
-        fields = ('id', 'title', 'description', 'owner', 'videos', 'created_at', 
-                 'updated_at', 'is_public', 'collaborators')
-        read_only_fields = ('id', 'created_at', 'updated_at')
+        fields = ['id', 'title', 'video_id', 'thumbnail', 'playlist'] # Include 'id'
+        read_only_fields = ['id', 'title', 'thumbnail'] # These are set by the backend, not the frontend

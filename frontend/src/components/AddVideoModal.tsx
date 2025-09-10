@@ -79,7 +79,8 @@ const AddVideoModal: React.FC<AddVideoModalProps> = ({
 
     setLoading(false);
   };
-
+  // Old: dispatch({ type: 'ADD_VIDEO', payload: { playlistId: selectedPlaylist, video: newVideo } });
+  // If you want to call the async context action (addVideo), import and call it inside handleAddVideo instead of using a top-level await.
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !loading) {
       handleAddVideo();

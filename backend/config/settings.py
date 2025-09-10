@@ -152,3 +152,7 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'API for managing YouTube playlists',
     'VERSION': '1.0.0',
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Your React dev server URL
+]
